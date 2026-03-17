@@ -3,7 +3,7 @@
 
 name: CI - lazzy - Pytest + Allure   #给自动化流程起名字
 
-on:
+on:  #触发的动作
   push:
     branches: [ main, master ]  # 推代码到main/master分支时触发：① 你把代码推送到仓库的 main 或 master
   pull_request:
