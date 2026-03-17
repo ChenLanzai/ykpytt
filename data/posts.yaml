@@ -1,0 +1,41 @@
+# 基础地址
+base_url: https://jsonplaceholder.typicode.com
+
+# 帖子列表
+posts_list:
+  path: /posts
+  expected_status: 200
+
+# 单个帖子详情：多组 post_id 参数化
+get_single_post:
+  path_template: /posts/{post_id}
+  post_ids: [1, 2, 3]
+  expected_status: 200
+
+# 创建帖子：多组 payload 参数化
+create_post:
+  path: /posts
+  method: POST
+  expected_status: 201
+  cases:
+    - title: "title A"
+      body: "body A"
+      userId: 1
+    - title: "title B"
+      body: "body B"
+      userId: 2
+
+# 更新帖子：多组 post_id + payload
+update_post:
+  path_template: /posts/{post_id}
+  method: PUT
+  cases:
+    - post_id: 1
+      title: "updated title 1"
+      body: "updated body"
+      userId: 1
+    - post_id: 2
+      title: "updated title 2"
+      body: "updated body"
+      userId: 1
+      
