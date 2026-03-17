@@ -85,6 +85,10 @@ jobs:
     if: success() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
      # 只有test任务成功、且是main/master分支时才执行
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages  # 关联GitHub Pages环境（需要仓库设置）
       url: ${{ steps.deploy.outputs.page_url }}  # 部署成功后显示报告的网页地址
