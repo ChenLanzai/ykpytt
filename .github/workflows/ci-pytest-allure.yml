@@ -80,22 +80,22 @@ jobs:
           path: allure-report/
         if: success() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
 
-  deploy:  #第二个任务：deploy（发布报告到网页）
-    needs: test  # 必须等test任务完成后才执行
-    if: success() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
-     # 只有test任务成功、且是main/master分支时才执行
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages  # 关联GitHub Pages环境（需要仓库设置）
-      url: ${{ steps.deploy.outputs.page_url }}  # 部署成功后显示报告的网页地址
-    steps:
-      - name: 发布到 GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: allure-report  # 用test任务上传的报告包
-          token: ${{ secrets.GITHUB_TOKEN }}  # GitHub自动生成的令牌（权限用）
+#  deploy:  #第二个任务：deploy（发布报告到网页）
+#    needs: test  # 必须等test任务完成后才执行
+#    if: success() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+#     # 只有test任务成功、且是main/master分支时才执行
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: read
+#      pages: write
+#      id-token: write
+#    environment:
+#      name: github-pages  # 关联GitHub Pages环境（需要仓库设置）
+#      url: ${{ steps.deploy.outputs.page_url }}  # 部署成功后显示报告的网页地址
+#    steps:
+#      - name: 发布到 GitHub Pages
+#        id: deploy
+#        uses: actions/deploy-pages@v4
+#        with:
+#          artifact_name: allure-report  # 用test任务上传的报告包
+#          token: ${{ secrets.GITHUB_TOKEN }}  # GitHub自动生成的令牌（权限用）
